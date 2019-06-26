@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  jmr:
+    build: 
+      context: ./jmr
+      dockerfile: Dockerfile
+    expose:
+      - 8000
+    environment:
+      - DEBUG=False
+      - SECRET_KEY=my_precious
+    volumes:
+      - static_volume:/usr/src/app/staticfiles
+  
+  nginx:
+    build:
+      context: ./jmr/nginx
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - static_volume:/usr/src/app/staticfiles
+    ports:
+      - 80:80
+    depends_on:
+      - jmr
+
+volumes:
+  static_volume:

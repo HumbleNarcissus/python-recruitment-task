@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JMR</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label>Enter valid url</label>
+        <input type="text" name="title">
+        <input type="submit" value="submit">
+    </form>
+    {% if status and shortcut %}
+        <p>status: {{status}}</p>
+        <p>Your shortcut: {{shortcut}}</p>
+    {% endif %}
+</body>
+</html>
